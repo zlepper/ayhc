@@ -7,13 +7,16 @@ import (
 	nurl "net/url"
 )
 
-// A client that cna interact with external services
+// A client that can interact with external services
 type Client struct {
 	client *http.Client
 }
 
+// Headers and query parameters for the request
 type RequestOptions struct {
+	// Headers to attach to the request
 	Headers     Header
+	// Query parameters to add to the request
 	QueryParams QueryParam
 }
 
