@@ -93,3 +93,30 @@ yahc attempts to automatically parse your request and response into
 something that can be send to servers. All these parses can be changed, 
 and additional ones registered to allow for working with more types of
 content. By default only a JSON parser is provided.
+
+To register a custom parser, implement the 
+```go
+// A request parser will take to the request body struct, and turn it into
+// a byte array that can be passed along to the actual request
+type RequestParser interface {
+	// Should convert the given argument into a byte array
+	Convert(v interface{}) ([]byte, error)
+}
+```
+
+or 
+```go
+// A ResponseParser should convert a response body into an object
+type ResponseParser interface {
+	// Should convert the r into v
+	// Closing the reader is handled by yahc
+	Convert(r io.Reader, v interface{}) error
+}
+```
+
+depending on your use-case, and register them with 
+`RegisterRequestParser` or `RegisterResponseParser`. 
+A parser can be registered for multiple content types. 
+
+For an example, check the [json-parser.go](json-parser.go) file,
+which is what handles the build in json parser.
