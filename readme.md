@@ -14,7 +14,7 @@ build into the library.
 go get github.com/zlepper/yahc
 ```
 
-Godoc: https://godoc.org/github.com/zlepper/ayhc
+Godoc: https://godoc.org/github.com/zlepper/yahc
 
 ## Examples
 Here are some basic examples of how this library can be used. 
